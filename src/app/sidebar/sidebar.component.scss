@@ -1,0 +1,48 @@
+nav{
+    position: absolute;
+    width: 200px;
+    height: 100%;
+    background-color: white;
+    animation-name: example;
+    animation-duration: 1s;
+    font-weight: bold;
+    box-shadow: 0 0 3px;
+    overflow: auto;
+    z-index: 3;
+    header{
+        box-shadow: 0 0 3px;
+        margin-bottom: 7px;
+        padding: 3px;   
+        select{
+            width: 100%;
+            padding: 2px;
+            outline: none;
+            border: 1px solid #cccccc;
+        }
+    }
+    ul{
+        hr{
+            margin: 0 17px;
+        }
+        li{
+            padding: 5px;
+            display: grid;
+            grid-template-columns: 26px 1fr;
+            outline: none;
+            &:hover{
+                background-color: #d9d9d9;
+            }
+            &.active{
+                background-color: #d9d9d9;
+            }
+        }
+    }
+}
+@keyframes example {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}

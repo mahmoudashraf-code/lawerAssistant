@@ -1,0 +1,101 @@
+#bodySalery{
+    background-color: #dfdfdf;
+    height: 100%;
+    overflow: auto;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    animation-name: loginAnimation;
+    animation-duration: .5s;
+    nav{
+        box-shadow: 0 0 2px black;
+        margin: 5px;
+        display: flex;
+        svg{
+            margin: 3px;
+        }
+        input{
+            flex: 1;
+            border: none;
+            outline: none;
+            background: none;
+        }
+    }
+    div{
+        overflow: auto;
+        .card{
+            animation-name: loginAnimation;
+            animation-duration: .5s;
+            margin: 5px;
+            box-shadow: 0 0 3px;
+            height: 140px;
+            background-color: white;
+            border-radius: 5px;
+            display: grid;
+            grid-template-rows: auto 1fr;
+            & > div{
+                select{
+                    width: 200px;
+                    outline: none;
+                    border: 1px solid #cccccc;
+                }
+               display: grid;
+               border-bottom: 1px solid #dfdfdf;
+               grid-template-columns: auto 1fr auto;
+                svg{
+                    margin: 2px;
+                    &:hover{
+                        fill: red;
+                    }
+                }
+            }
+            textarea{
+                border: none;
+                border-right: 1px solid;
+                outline: none;
+                padding: 2px;
+                font-weight: bold;
+                font-family: auto;
+                font-size: larger;
+                overflow: auto;
+                resize: none;
+            }
+        }
+    }
+    svg#add{
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        bottom: 0;
+        left: 0;
+        margin: 6px;
+    }
+}
+div.button{
+    #add{
+        position: absolute;
+        bottom: 0;
+        width: 30px;
+        height: 30px;
+        right: 0;
+        margin: 6px;
+        fill: #ffc107;
+        &:hover{
+            fill: black;
+        }
+    }
+    ul{
+        position: absolute;
+        bottom: 28px;
+        right: 0;
+        margin: 8px;
+        li{
+            &:hover{
+                fill: #ffc107;
+            }
+            svg{
+                width: 30px;
+                height: 30px;
+            }
+        }
+    }
+}

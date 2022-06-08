@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="./print.js"></script>
+    <style>
+        body>header {
+            box-shadow: 0 0 1px black;
+            margin: 3px;
+        }
+
+        body>header .header {
+            background-color: #f1f1f1;
+            padding: 0 4px;
+        }
+
+        body>header .header svg {
+            width: 18px;
+            float: left;
+        }
+
+        body>header .header svg:hover {
+            fill: cadetblue;
+        }
+
+        body>header input[type='range'] {
+            -webkit-appearance: none;
+            height: 10px;
+            border-radius: 5px;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+            overflow: hidden;
+        }
+
+        body>header input[type='range']:hover {
+            opacity: 1;
+        }
+
+        body>header input[type='range']::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 10px;
+            border-radius: 10px;
+            background: #4CAF50;
+            cursor: pointer;
+        }
+
+        body>header #bodySetting .divItem {
+            margin: 3px;
+        }
+
+        body>header #bodySetting #footer {
+            margin: 3px;
+        }
+    </style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        #containerData svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        #containerData #item {
+            padding: 0 4px;
+            direction: rtl;
+        }
+
+        #containerData #item nav {
+            box-shadow: 0 0 2px black;
+            margin: 5px 0;
+        }
+
+        #containerData #item nav svg {
+            padding: 2px;
+            margin: 0;
+        }
+
+        #containerData .item {
+            margin: 4px;
+            display: flex;
+        }
+
+        #containerData .item label {
+            margin: 0 3px;
+            width: 90px;
+            text-align: center;
+        }
+
+        #containerData .item input[type='text'] {
+            flex: 1;
+            outline: none;
+        }
+
+        #containerData table {
+            width: 100%;
+        }
+
+        #containerData table input {
+            width: 100%;
+            outline: none;
+            border: none;
+        }
+
+        #containerData table svg {
+            display: none;
+            margin: 0;
+            width: 20px;
+            height: 20px;
+        }
+
+        #addNew {
+            display: none;
+        }
+
+        #containerData table caption {
+            box-shadow: inset 0 0 1px black;
+            margin: 5px 1px;
+        }
+
+        #containerData #assets {
+            margin: 5px 0px;
+        }
+
+        #containerData #assets header {
+            text-align: center;
+            box-shadow: inset 0 0 1px black;
+        }
+
+        #containerData #assets ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #containerData #assets li {
+            margin: 3px 1px;
+            box-shadow: 0 0 2px black;
+            cursor: auto;
+        }
+
+        #containerData #assets li h4 {
+            display: inline-block;
+            margin: 1px;
+        }
+
+        #containerData #assets li svg {
+            display: none;
+        }
+
+        #containerData #assets li:nth-last-child(1) {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header style="direction: rtl;">
+        <div class="header">
+            الاعدادات
+            <svg viewBox="0 0 512 512" onclick="svgBut(this)">
+                <path
+                    d="M98 190.06l139.78 163.12a24 24 0 0036.44 0L414 190.06c13.34-15.57 2.28-39.62-18.22-39.62h-279.6c-20.5 0-31.56 24.05-18.18 39.62z">
+                </path>
+            </svg>
+        </div>
+        <div id="bodySetting">
+            <div class="divItem">
+                <input type="checkbox" id="navBut" onchange="navButF(this.checked)" checked>
+                <label for="navBut">شريط الاعدادات</label>
+            </div>
+            <div class="divItem">
+                <input type="checkbox" onchange="infoButF(this.checked)" id="infoBut" checked>
+                <label for="infoBut">معلومات العميل</label>
+            </div>
+            <div class="divItem">
+                <input type="checkbox" onchange="lecButF(this.checked)" id="lecBut" checked>
+                <label for="lecBut">الجلسات</label>
+            </div>
+            <div class="divItem">
+                <input type="checkbox" onchange="infoF(this.checked)" id="info" checked>
+                <label for="info">التوكيلات</label>
+            </div>
+            <div class="divItem">
+                <input type="checkbox" onchange="folderButF(this.checked)" id="folderBut" checked>
+                <label for="folderBut">الملفات</label>
+            </div>
+            <div class="divItem">
+                <label for="folderBut">درجة وضوح البيانات</label>
+                <input type="range" value="10" min="1" max="10"
+                    onchange="if(this.value==10)item.style.opacity='1';else item.style.opacity=`.${this.value}`">
+            </div>
+            <div id="footer">
+                <hr style="margin: 4px;">
+                <button style="margin: 2px;width: 50px;cursor: pointer;" onclick="printPage()">طباعة</button>
+            </div>
+        </div>
+    </header>
+    <div id="containerData"></div>
+    <script>
+        function svgBut(ele) {
+            if (bodySetting.style.display == "none") {
+                bodySetting.style.display = "block";
+                ele.style.transform = "rotate(0deg)"
+            } else {
+                bodySetting.style.display = "none"
+                ele.style.transform = "rotate(90deg)"
+            }
+        }
+        function lecButF(checked) {
+            if (checked == true)
+                document.querySelectorAll('#item table')[0].style.display = "table";
+            else document.querySelectorAll('#item table')[0].style.display = "none";
+        }
+        function infoF(checked) {
+            if (checked == true)
+                document.querySelectorAll('#item table')[1].style.display = "table";
+            else document.querySelectorAll('#item table')[1].style.display = "none";
+        }
+        function folderButF(checked) {
+            if (checked == true)
+                assets.style.display = "block";
+            else assets.style.display = "none";
+        }
+        function navButF(checked) {
+            if (checked == true)
+                document.querySelectorAll('#item nav')[0].style.display = "block";
+            else document.querySelectorAll('#item nav')[0].style.display = "none";
+        }
+        function infoButF(checked) {
+            if (checked == true)
+                clientData.style.display = "block";
+            else clientData.style.display = "none";
+        }
+        function printPage() {
+            printJS({
+                printable: containerData.innerHTML,
+                type: 'raw-html',
+                style: document.getElementsByTagName('style')[1].innerHTML
+            });
+        }
+    </script>
+</body>
+
+</html>

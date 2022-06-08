@@ -1,0 +1,31 @@
+<div id="body">
+    <nav>
+        <svg viewBox="0 0 512 512">
+            <path
+                d="M464 428L339.92 303.9a160.48 160.48 0 0030.72-94.58C370.64 120.37 298.27 48 209.32 48S48 120.37 48 209.32s72.37 161.32 161.32 161.32a160.48 160.48 0 0094.58-30.72L428 464zM209.32 319.69a110.38 110.38 0 11110.37-110.37 110.5 110.5 0 01-110.37 110.37z">
+            </path>
+        </svg>
+        <input type="search" [(ngModel)]="searchText" placeholder="ابحث هنا">
+        <svg viewBox="0 0 512 512" id="add" (click)="appData.push({
+                name:'العنوان',
+                body:''
+            })">
+            <path
+                d="M256 48C141.31 48 48 141.31 48 256s93.31 208 208 208 208-93.31 208-208S370.69 48 256 48zm80 224h-64v64a16 16 0 01-32 0v-64h-64a16 16 0 010-32h64v-64a16 16 0 0132 0v64h64a16 16 0 010 32z">
+            </path>
+        </svg>
+    </nav>
+    <ul>
+        <li *ngFor="let x of appData | filter:searchText;index as i">
+            <div class="header">
+                <input type="text" [(ngModel)]="x.name">
+                <svg viewBox="0 0 512 512" (click)="appData.splice(i,1)">
+                    <path
+                        d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z">
+                    </path>
+                </svg>
+            </div>
+            <textarea [(ngModel)]="appData[i].body"></textarea>
+        </li>
+    </ul>
+</div>

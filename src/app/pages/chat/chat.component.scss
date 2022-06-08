@@ -1,0 +1,48 @@
+#bodychat{
+    height: 100%;
+    display: flex;
+    background-color: white;
+    direction: ltr;
+    animation-name: loginAnimation;
+    animation-duration: .5s;
+    #users{
+        width: 192px;
+        margin: 3px;
+        box-shadow: 0 0 1px black;
+    }
+    #main{
+        display: grid;
+        grid-template-rows: auto 35px;
+        flex: 1;
+        background-color: #f7f6f6;
+        #chatInput{
+            box-shadow: 0 0 2px black;
+            margin: 3px;
+            display: grid;
+            grid-template-columns: auto 44px;
+            input{
+                outline: none;
+                border: none;
+                direction: rtl;
+                padding: 2px;
+            }
+        }
+        .iam,.you{
+            width: 60%;
+            box-shadow: 0 0 2px black;
+            margin: 5px;
+            padding: 3px;
+            direction: rtl;
+            border-radius: 2px;
+        }
+        .iam{
+            
+            background-color: #1c97a7;
+            color: white;
+            float: right;
+        }
+        .you{
+            background-color: #d4cdcd;
+        }
+    }
+}

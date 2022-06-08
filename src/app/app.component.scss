@@ -1,0 +1,42 @@
+#body{
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    header{
+        box-shadow: 0 0 5px black;
+        color: white;
+        -webkit-user-select: none;
+        display: grid;
+        height: 25px;
+        @media print{
+            display: none;
+        }
+        grid-template-columns: auto 1fr auto;
+        h2{
+            display: inline-flex;
+            padding: 0 4px;
+            font-size: 20px;
+            svg{
+                margin: 0px 0px 0 5px;
+                width: 23px;
+                height: 24px;
+                fill: white;
+                &:hover{
+                    fill: black;
+                }
+            }
+        }
+        div svg{
+            padding: 3px;
+            float: left;
+            fill: white;
+            outline: none;
+            &:hover{
+                fill: black;
+            }
+        }
+    }
+    div{
+        height: 100%;
+    }
+}

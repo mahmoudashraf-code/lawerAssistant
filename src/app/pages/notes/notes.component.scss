@@ -1,0 +1,61 @@
+#body{
+    height: 100%;
+    display: grid;
+    background-color: white;
+    grid-template-rows: auto 1fr;
+    animation-name: loginAnimation;
+    animation-duration: .5s;
+    nav{
+        box-shadow: 0 0 2px black;
+        margin: 5px;
+        display: flex;
+        svg{
+            margin: 3px;
+            &#add:hover{
+                fill: #715b0e;
+            }
+        }
+        input{
+            flex: 1;
+            border: none;
+            outline: none;
+        }
+    }
+    ul{
+        overflow: auto;
+        li{
+            animation-name: loginAnimation;
+            animation-duration: .5s;
+            width: 227px;
+            box-shadow: 0 0 2px;
+            display: inline-grid;
+            grid-template-rows: auto 1fr;
+            margin: 3px;
+            height: 165px;
+            .header{
+                background-color: #715b0e;
+                box-shadow: 0 0 2px black;
+                display: grid;
+                grid-template-columns: 1fr auto;
+                input{
+                    background: none;
+                    border: none;
+                    outline: none;
+                    color: white;       
+                }
+                svg{
+                    fill: white;
+                    &:hover{
+                        fill: red;
+                    }
+                }
+            }
+            textarea{
+                outline: none;
+                cursor: auto;
+                padding: 2px;
+                resize: none;
+            }
+        }
+    }
+}

@@ -1,0 +1,211 @@
+<div id="bodyLect" [ngClass]="{'insertData':this.selectFrist}">
+    <div id="cards">
+        <nav>
+            <svg viewBox="0 0 512 512">
+                <path
+                    d="M464 428L339.92 303.9a160.48 160.48 0 0030.72-94.58C370.64 120.37 298.27 48 209.32 48S48 120.37 48 209.32s72.37 161.32 161.32 161.32a160.48 160.48 0 0094.58-30.72L428 464zM209.32 319.69a110.38 110.38 0 11110.37-110.37 110.5 110.5 0 01-110.37 110.37z">
+                </path>
+            </svg>
+            <input type="search" [(ngModel)]="searchText" placeholder="ابحث هنا">
+        </nav>
+        <div id="sort">
+            <div>
+                <input type="radio" checked name="sortValues" id="normal" (change)="sortText='normal'">
+                <label for="normal"> لا يوجد </label>
+            </div>
+            <hr style="margin: 2px 10%;">
+            <div>
+                <input type="radio" name="sortValues" id="date" (change)="sortText='date'">
+                <label for="date"> التاريخ </label>
+                <div style="text-align: center;">
+                    <label for="to"> من </label>
+                    <input type="date" #to>
+                    <label for="from"> الى </label>
+                    <input type="date" #from>
+                </div>
+            </div>
+        </div>
+        <div id="option">
+            <div>
+                <input type="radio" id="lect" name="option" checked (change)="sortText='normal'">
+                <label for="lect"> الجلسات </label>
+            </div>
+            <hr style="margin: 2px 10%;">
+            <div>
+                <input type="radio" id="save" name="option" (change)="sortText='save'">
+                <label for="save"> الارشيف </label>
+            </div>
+        </div>
+        <div class="card" *ngFor="let x of this.appData | filter:searchText | sort:sortText:to.value:from.value;index as i">
+            <div id="cardOption">
+                <button (click)='updateData(i,x)' title="عرض">
+                    <svg viewBox="0 0 96 96" overflow="hidden">
+                        <path
+                            d="M72.5 63.1C70.9 61.5 68.5 60.7 66.3 61.2L61.8 56.8C65.8 51.6 68 45.2 68 38.6 68.1 21.9 54.6 8.4 38 8.3 21.4 8.2 7.9 21.7 7.8 38.3 7.7 54.9 21.2 68.4 37.8 68.5 44.4 68.5 50.9 66.3 56.2 62.3L60.6 66.7C60.2 69 60.9 71.3 62.5 73L75 85.5C77.7 88.2 82.2 88.2 84.9 85.5 87.6 82.8 87.6 78.3 84.9 75.6L72.5 63.1ZM38 62.5C24.7 62.5 14 51.8 14 38.5 14 25.2 24.7 14.5 38 14.5 51.3 14.5 62 25.2 62 38.5 62 51.7 51.2 62.5 38 62.5Z" />
+                        <path
+                            d="M59.5 37 53.8 37C53.3 37.1 52.8 37.4 52.5 37.8L48.7 41.9 45.5 30.8C45.2 29.9 44.2 29.3 43.3 29.6 42.8 29.8 42.3 30.1 42.1 30.7L36.1 46.6 32 24.6C31.8 23.6 30.9 23 30 23.2 29.4 23.3 28.9 23.8 28.6 24.4L24.3 37 16.5 37 16.5 41 25.6 41C26.4 40.9 27.1 40.3 27.3 39.5L29.8 31.9 33.8 53.4C33.9 54.2 34.6 54.8 35.4 54.8L35.6 54.8C36.3 54.8 37 54.4 37.3 53.7L43.7 36.9 46.3 45.9C46.6 46.8 47.5 47.4 48.5 47.1 48.8 47 49.1 46.8 49.3 46.6L54.7 41 59.6 41 59.6 37Z" />
+                    </svg>
+                </button>
+                <button (click)="deleteLect(i,x)" title="خذف">
+                    <svg viewBox="0 0 512 512">
+                        <path d="M296 64h-80a7.91 7.91 0 00-8 8v24h96V72a7.91 7.91 0 00-8-8z" class="ionicon-fill-none">
+                        </path>
+                        <path
+                            d="M432 96h-96V72a40 40 0 00-40-40h-80a40 40 0 00-40 40v24H80a16 16 0 000 32h17l19 304.92c1.42 26.85 22 47.08 48 47.08h184c26.13 0 46.3-19.78 48-47l19-305h17a16 16 0 000-32zM192.57 416H192a16 16 0 01-16-15.43l-8-224a16 16 0 1132-1.14l8 224A16 16 0 01192.57 416zM272 400a16 16 0 01-32 0V176a16 16 0 0132 0zm32-304h-96V72a7.91 7.91 0 018-8h80a7.91 7.91 0 018 8zm32 304.57A16 16 0 01320 416h-.58A16 16 0 01304 399.43l8-224a16 16 0 1132 1.14z">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+            <h3>{{'رقم الملف : '+x.numberFile}}</h3>
+            <h3>{{'رقم الدعوى : '+x.number}}</h3>
+            <h3>{{'مكان الجلسة : '+x.poistion}}</h3>
+            <h3>{{'رقم الدائرة : '+x.circle}}</h3>
+            <h3>{{'المدعى : '+x.person1}}</h3>
+            <h3>{{'المدعى عليه : '+x.person2}}</h3>
+        </div>
+    </div>
+    <div id="item" *ngIf="selectFrist">
+        <nav>
+            <svg viewBox="0 0 512 512" (click)="saveData()">
+                <title>حفظ</title>
+                <path
+                    d="M465.94 119.76l-73.7-73.7A47.68 47.68 0 00358.3 32H96a64 64 0 00-64 64v320a64 64 0 0064 64h320a64 64 0 0064-64V153.7a47.68 47.68 0 00-14.06-33.94zM120 112h176a8 8 0 018 8v48a8 8 0 01-8 8H120a8 8 0 01-8-8v-48a8 8 0 018-8zm139.75 319.91a80 80 0 1176.16-76.16 80.06 80.06 0 01-76.16 76.16z">
+                </path>
+                <circle cx="256" cy="352" r="48"></circle>
+            </svg>
+            <svg viewBox="0 0 512 512" (dblclick)="cancel()">
+                <title>اغلاق بدون حفظ</title>
+                <path
+                    d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z">
+                </path>
+            </svg>
+            <svg viewBox="0 0 512 512" (click)="print()">
+                <title>طباعة</title>
+                <path
+                    d="M408 112H106a58 58 0 00-58 58v158a56 56 0 0056 56h8v39.68A40.32 40.32 0 00152.32 464h207.36A40.32 40.32 0 00400 423.68V384h8a56 56 0 0056-56V168a56 56 0 00-56-56zm-40 311.68a8.35 8.35 0 01-8.32 8.32H152.32a8.35 8.35 0 01-8.32-8.32V264.32a8.35 8.35 0 018.32-8.32h207.36a8.35 8.35 0 018.32 8.32zm26-215.76a24 24 0 1122-22 24 24 0 01-22 22zM344 48H168a56.09 56.09 0 00-55.42 48h286.84A56.09 56.09 0 00344 48z">
+                </path>
+            </svg>
+            <svg viewBox="0 0 512 512" (click)="svaeToAr()">
+                <title>حفظ فى الارشيف | الرجوع من الارشيف</title>
+                <path
+                    d="M64 480H48a32 32 0 01-32-32V112a32 32 0 0132-32h16a32 32 0 0132 32v336a32 32 0 01-32 32zM240 176a32 32 0 00-32-32h-64a32 32 0 00-32 32v28a4 4 0 004 4h120a4 4 0 004-4zM112 448a32 32 0 0032 32h64a32 32 0 0032-32v-30a2 2 0 00-2-2H114a2 2 0 00-2 2z">
+                </path>
+                <rect x="112" y="240" width="128" height="144" rx="2" ry="2"></rect>
+                <path
+                    d="M320 480h-32a32 32 0 01-32-32V64a32 32 0 0132-32h32a32 32 0 0132 32v384a32 32 0 01-32 32zM495.89 445.45l-32.23-340c-1.48-15.65-16.94-27-34.53-25.31l-31.85 3c-17.59 1.67-30.65 15.71-29.17 31.36l32.23 340c1.48 15.65 16.94 27 34.53 25.31l31.85-3c17.59-1.67 30.65-15.71 29.17-31.36z">
+                </path>
+            </svg>
+        </nav>
+        <div id="clientData">
+            <div class="item">
+                <label for="projectName">رقم الملف</label>
+                <input type="text" (change)="saveVal=true" [(ngModel)]="appData[selectdata].numberFile" placeholder="رقم الملف">
+            </div>
+            <div class="item">
+                <label for="projectName">رقم الدعوى</label>
+                <input type="text" (change)="saveVal=true" [(ngModel)]="appData[selectdata].number" placeholder="رقم الدعوى">
+            </div>
+            <div class="item">
+                <label for="projectName">سنة الدعوى</label>
+                <input type="text" (change)="saveVal=true" [(ngModel)]="appData[selectdata].year" placeholder="سنة الدعوى">
+            </div>
+            <div class="item">
+                <label for="projectName">نوع الدعوى</label>
+                <input type="text" (change)="saveVal=true" [(ngModel)]="appData[selectdata].type" placeholder="نوع الدعوى">
+            </div>
+            <div class="item">
+                <label for="projectPath">موضوع الدعوى</label>
+                <input type="text" (change)="saveVal=true" [(ngModel)]="appData[selectdata].subject" placeholder="موضوع الدعوى">
+            </div>
+            <div class="item">
+                <label for="projectPath">المحكمة</label>
+                <input type="text" (change)="saveVal=true" [(ngModel)]="appData[selectdata].poistion" placeholder="المحكمة">
+            </div>
+            <div class="item">
+                <label for="projectPath">رقم الدائرة</label>
+                <input type="text" (change)="saveVal=true" [(ngModel)]="appData[selectdata].circle" placeholder="رقم الدائرة">
+            </div>
+            <div class="item">
+                <label for="projectPath">نوع الدائرة</label>
+                <input type="text" (change)="saveVal=true" [(ngModel)]="appData[selectdata].typeCircle" placeholder="نوع الدائرة">
+            </div>
+            <div class="item">
+                <label for="projectPath">الاتعاب</label>
+                <input type="text" (change)="saveVal=true" [(ngModel)]="appData[selectdata].salery" placeholder="الاتعاب">
+            </div>
+            <table border="1" id="result">
+                <caption>النتائج</caption>
+                <th>الجلسة</th>
+                <th>نتيجة الجلسة</th>
+                <th style="width: 21px;"></th>
+                <tr *ngFor="let y of appData[selectdata].result;index as j">
+                    <td><input (change)="saveVal=true" type="date" [(ngModel)]="y.result1"></td>
+                    <td><input (change)="saveVal=true" type="text" [(ngModel)]="y.result2"></td>
+                    <td class="delete">
+                        <svg viewBox="0 0 512 512" (click)="appData[selectdata].result.splice(j, 1)">
+                            <path d="M296 64h-80a7.91 7.91 0 00-8 8v24h96V72a7.91 7.91 0 00-8-8z">
+                            </path>
+                            <path
+                                d="M432 96h-96V72a40 40 0 00-40-40h-80a40 40 0 00-40 40v24H80a16 16 0 000 32h17l19 304.92c1.42 26.85 22 47.08 48 47.08h184c26.13 0 46.3-19.78 48-47l19-305h17a16 16 0 000-32zM192.57 416H192a16 16 0 01-16-15.43l-8-224a16 16 0 1132-1.14l8 224A16 16 0 01192.57 416zM272 400a16 16 0 01-32 0V176a16 16 0 0132 0zm32-304h-96V72a7.91 7.91 0 018-8h80a7.91 7.91 0 018 8zm32 304.57A16 16 0 01320 416h-.58A16 16 0 01304 399.43l8-224a16 16 0 1132 1.14z">
+                            </path>
+                        </svg>
+                    </td>
+                </tr>
+                <tr class="addNew">
+                    <td colspan="3" (click)="appData[selectdata].result.push({
+                        result1:'اختبار',
+                        result2:'اختبار'
+                    })">+ اضافة جلسة جديدة</td>
+                </tr>
+            </table>
+            <div id="persons">
+                <table border="1">
+                    <th>المدعى</th>
+                    <th style="width: 21px;"></th>
+                    <tr *ngFor="let x of appData[selectdata].person1;index as i">
+                        <td contenteditable="true"  (change)="saveVal=true" (mouseleave)="appData[selectdata].person1[i]=person111.innerHTML"
+                            #person111>
+                            {{x}}</td>
+                        <td class="delete">
+                            <svg viewBox="0 0 512 512" (click)="appData[selectdata].person1.splice(i, 1)">
+                                <path d="M296 64h-80a7.91 7.91 0 00-8 8v24h96V72a7.91 7.91 0 00-8-8z">
+                                </path>
+                                <path
+                                    d="M432 96h-96V72a40 40 0 00-40-40h-80a40 40 0 00-40 40v24H80a16 16 0 000 32h17l19 304.92c1.42 26.85 22 47.08 48 47.08h184c26.13 0 46.3-19.78 48-47l19-305h17a16 16 0 000-32zM192.57 416H192a16 16 0 01-16-15.43l-8-224a16 16 0 1132-1.14l8 224A16 16 0 01192.57 416zM272 400a16 16 0 01-32 0V176a16 16 0 0132 0zm32-304h-96V72a7.91 7.91 0 018-8h80a7.91 7.91 0 018 8zm32 304.57A16 16 0 01320 416h-.58A16 16 0 01304 399.43l8-224a16 16 0 1132 1.14z">
+                                </path>
+                            </svg>
+                        </td>
+                    </tr>
+                    <tr class="addNew">
+                        <td colspan="2" (click)="appData[selectdata].person1.push('اختبار')">
+                            اضافة مدعى جديد
+                        </td>
+                    </tr>
+                </table>
+                <table border="1">
+                    <th>المدعى عليهم</th>
+                    <th style="width: 21px;"></th>
+                    <tr *ngFor="let x of appData[selectdata].person2;index as i">
+                        <td contenteditable="true"  (change)="saveVal=true" (mouseleave)="appData[selectdata].person2[i]=person222.innerHTML"
+                            #person222>
+                            {{x}}</td>
+                        <td class="delete">
+                            <svg viewBox="0 0 512 512" (click)="appData[selectdata].person2.splice(i, 1)">
+                                <path d="M296 64h-80a7.91 7.91 0 00-8 8v24h96V72a7.91 7.91 0 00-8-8z">
+                                </path>
+                                <path
+                                    d="M432 96h-96V72a40 40 0 00-40-40h-80a40 40 0 00-40 40v24H80a16 16 0 000 32h17l19 304.92c1.42 26.85 22 47.08 48 47.08h184c26.13 0 46.3-19.78 48-47l19-305h17a16 16 0 000-32zM192.57 416H192a16 16 0 01-16-15.43l-8-224a16 16 0 1132-1.14l8 224A16 16 0 01192.57 416zM272 400a16 16 0 01-32 0V176a16 16 0 0132 0zm32-304h-96V72a7.91 7.91 0 018-8h80a7.91 7.91 0 018 8zm32 304.57A16 16 0 01320 416h-.58A16 16 0 01304 399.43l8-224a16 16 0 1132 1.14z">
+                                </path>
+                            </svg>
+                        </td>
+                    </tr>
+                    <tr class="addNew">
+                        <td colspan="2" (click)="appData[selectdata].person2.push('اختبار')">
+                            اضافة مدعى عليه جديد
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<div id="BodyClient">
+    <div>
+        <h2>اضافة موكل</h2>
+        <div>
+            <div class="item">
+                <label for="projectName">اسم الموكل</label>
+                <input type="text" #clientName placeholder="اسم الموكل">
+            </div>
+            <div class="item">
+                <label for="projectPath">رقم التليفون</label>
+                <input type="text" #phone placeholder="رقم التليفون">
+            </div>
+            <div class="item">
+                <label for="projectPath">عنوان الموكل</label>
+                <input type="text" #address placeholder="عنوان الموكل">
+            </div>
+        </div>
+        <div class="buttons">
+            <hr>
+            <button (click)="insertNewPeople({
+                name:clientName.value.trim(),
+                phone:phone.value.trim(),
+                address:address.value.trim(),
+                lec:[],
+                info:[],
+                id:''
+            })">اضافة</button>
+        </div>
+    </div>
+</div>

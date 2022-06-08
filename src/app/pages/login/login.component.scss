@@ -1,0 +1,48 @@
+#login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-weight: bold;
+    & > div{
+        box-shadow: 0 0 3px;
+        height: 530px;
+        width: 370px;
+        background-color: white;
+        animation-name: loginAnimation;
+        animation-duration: .5s;
+        border-radius: 10px;
+        #logo{
+            text-align: center;
+            svg{
+                width: 140px;
+                height: 140px;
+                margin: 45px;       
+            }
+        }
+        .item{
+            display: grid;
+            grid-template-columns: auto 1fr;
+            margin: 6px;
+            svg{
+                width: 25px;
+                height: 25px;
+                background-color: #eeeeee;
+                padding: 3px;
+                border: 1px solid #cccccc;
+            }
+            input{
+                padding: 3px;
+                border: 1px solid #cccccc;    
+                outline: none; 
+            }
+        }
+        button{
+            width: 89%;
+            margin: 20px;
+            font-weight: bold;
+            box-shadow: 0 0 2px;
+            padding: 5px;
+        }
+    }
+}

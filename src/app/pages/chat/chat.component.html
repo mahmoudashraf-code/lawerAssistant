@@ -1,0 +1,18 @@
+<div id="bodychat">
+    <div id="main">
+        <div style="overflow: auto;">
+            <div class="iam" *ngFor="let x of dataChat" [ngClass]="{'iam':x.user=='i','you':x.user=='y'}">
+                <h5>{{x.name}}</h5>
+                <hr>
+                {{x.data}}
+            </div>
+        </div>
+        <div id="chatInput">
+            <input type="text" #inputData>
+            <button (click)="postData(inputData.value.trim())">ارسال</button>
+        </div>
+    </div>
+    <div id="users">
+
+    </div>
+</div>

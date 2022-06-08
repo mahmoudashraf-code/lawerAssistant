@@ -1,0 +1,64 @@
+<div id="BodyClient">
+    <div>
+        <h2>اضافة جلسة</h2>
+        <div>
+            <div class="item">
+                <label for="projectName">اسم العميل</label>
+                <select #people>
+                    <option value="">اخنر العميل</option>
+                    <option *ngFor="let x of appData" [value]="x.id">{{x.name}}</option>
+                </select>
+            </div>
+            <div class="item">
+                <label for="projectName">رقم الملف</label>
+                <input type="text" #numberFile placeholder="رقم الملف">
+            </div>
+            <div class="item">
+                <label for="projectName">رقم الدعوى</label>
+                <input type="text" #number placeholder="رقم الدعوى">
+            </div>
+            <div class="item">
+                <label for="projectName">سنة الدعوى</label>
+                <input type="text" #year placeholder="سنة الدعوى">
+            </div>
+            <div class="item">
+                <label for="projectName">نوع الدعوى</label>
+                <input type="text" #type placeholder="نوع الدعوى">
+            </div>
+            <div class="item">
+                <label for="projectPath">موضوع الدعوى</label>
+                <input type="text" #subject placeholder="موضوع الدعوى">
+            </div>
+            <div class="item">
+                <label for="projectPath">المحكمة</label>
+                <input type="text" #poistion placeholder="المحكمة">
+            </div>
+            <div class="item">
+                <label for="projectPath">رقم الدائرة</label>
+                <input type="text" #circle placeholder="رقم الدائرة">
+            </div>
+            <div class="item">
+                <label for="projectPath">نوع الدائرة</label>
+                <input type="text" #typeCircle placeholder="نوع الدائرة">
+            </div>
+        </div>
+        <div class="buttons">
+            <hr>
+            <button (click)="insertNewLect({
+                year: year.value.trim(),
+                type: type.value.trim(),
+                typeCircle: typeCircle.value.trim(),
+                subject: subject.value.trim(),
+                number:number.value.trim(),
+                numberFile:numberFile.value.trim(),
+                poistion:poistion.value.trim(),
+                circle:circle.value.trim(),
+                save:false,
+                person1:[],
+                person2:[],
+                salery:'',
+                result:[]
+            },people.value)">اضافة</button>
+        </div>
+    </div>
+</div>

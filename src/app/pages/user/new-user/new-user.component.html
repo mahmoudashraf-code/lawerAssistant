@@ -1,0 +1,30 @@
+<div id="BodyClient">
+    <div>
+        <h2>اضافة مستخدم</h2>
+        <div>
+            <div class="item">
+                <label for="userName">اسم المستخدم</label>
+                <input type="text" #userName placeholder="اسم المستخدم">
+            </div>
+            <div class="item">
+                <label for="password">كلمة المرور</label>
+                <input type="text" #password placeholder="كلمة المرور">
+            </div>
+            <div class="item">
+                <label for="">نوع المستخدم</label>
+                <select #type>
+                    <option value="admin">مسؤل</option>
+                    <option value="user">مستخدم عادى</option>
+                </select>
+            </div>
+        </div>
+        <div class="buttons">
+            <hr>
+            <button (click)="insertNewUser({
+                name:userName.value.trim(),
+                password:password.value.trim(),
+                type:type.value
+            })">اضافة</button>
+        </div>
+    </div>
+</div>

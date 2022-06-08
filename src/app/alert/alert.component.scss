@@ -1,0 +1,41 @@
+div{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 10px;
+    max-height: 35%;
+    overflow-y: auto;
+    font-size: large;
+    font-weight: bold;
+    @media print{
+        display: none;
+    }
+    ul{
+        li{
+            background-color: #145d17;
+            color: white;
+            margin: 10px;
+            box-shadow: 0 0 3px black;
+            max-width: 300px;
+            min-width: 200px;
+            padding: 4px;
+            border-radius: 5px;
+            animation-name: loginAnimation;
+            animation-duration: .5s;
+            &.error{
+                background-color: #6b1711 !important;
+            }
+            header{
+                border: none;
+                border-bottom: 1px solid;
+                svg{
+                    float: left;
+                    fill: white;
+                    &:hover{
+                        fill: red;
+                    }
+                }
+            }
+        }
+    }
+}
