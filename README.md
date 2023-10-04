@@ -1,6 +1,9 @@
 # Lawyer Assistant
 This is a web app built using Angular and Express.js to help lawyers with their work.
 
+## Demo 
+https://lawer-assistant.vercel.app/
+
 ## Screenshots
 ![App Screenshot](./screenshot/home)
 ![App Screenshot](./screenshot/bloger)
